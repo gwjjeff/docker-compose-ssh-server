@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  devmachine:
+    build: ./build1
+    image: gwjjeff/devbase
+    environment:
+      POWER_USER: jeff
+    volumes:
+      - ./entryfiles:/root/entryfiles

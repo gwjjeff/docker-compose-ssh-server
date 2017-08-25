@@ -1,0 +1,9 @@
+StrictHostKeyChecking no 
+UserKnownHostsFile /dev/null
+LogLevel QUIET
+
+# host qcloud1
+#        HostName 123.45.67.89
+#        Port 22
+#        User ubuntu
+#        IdentityFile %d/.ssh/id_rsa_vhost2
