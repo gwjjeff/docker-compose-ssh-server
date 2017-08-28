@@ -5,7 +5,7 @@ RUN curl -s http://mirrors.163.com/.help/CentOS6-Base-163.repo > /etc/yum.repos.
     && yum clean all \
     && yum makecache
 
-RUN yum -y install openssh-server openssh-clients wget
+RUN yum -y install openssh-server openssh-clients wget rsync
 RUN yum -y install epel-release
 # auto make cache
 RUN yum -y install yum-utils

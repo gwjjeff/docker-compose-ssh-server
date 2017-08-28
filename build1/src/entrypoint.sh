@@ -13,6 +13,12 @@ chown -R $POWER_USER:$POWER_USER $POWER_USER_HOME/.ssh
 chmod 600 $POWER_USER_HOME/.ssh/id_rsa $POWER_USER_HOME/.ssh/authorized_keys
 echo power user has been created: $POWER_USER
 
-ifconfig
+ifconfig eth0
+
+if [ -f /root/entryfiles/scripts/user/bootstrap.sh ]; then
+    cp -r /root/entryfiles/scripts/user $POWER_USER_HOME/scripts
+    chown -R $POWER_USER:$POWER_USER $POWER_USER_HOME/scripts
+    su - $POWER_USER -c "sh $POWER_USER_HOME/scripts/bootstrap.sh"
+fi
 
 exec "$@"

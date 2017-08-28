@@ -9,11 +9,16 @@ services:
       JAVA_HOME: /opt/jdk
     volumes:
       - ./entryfiles:/root/entryfiles:ro
+      - ./entryfiles/_etc/supervisor/supervisord.d:/etc/supervisor/supervisord.d:ro
       - ./entryfiles/_etc/profile.d/misc.sh:/etc/profile.d/misc.sh:ro
       - /opt/jdk:/opt/jdk:ro
+      - /home/jeff/bench/java/hadoop:/opt/hadoop:ro
 
   node1:
     <<: *default
-
+    environment:
+      POWER_USER: hdfs
   node2:
     <<: *default
+    environment:
+      POWER_USER: yarn
