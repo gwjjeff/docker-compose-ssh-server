@@ -1,10 +1,19 @@
 version: '3.1'
 
 services:
-  devmachine:
+  devmachine: &default
     build: ./build1
     image: gwjjeff/devbase
     environment:
       POWER_USER: jeff
+      JAVA_HOME: /opt/jdk
     volumes:
-      - ./entryfiles:/root/entryfiles
+      - ./entryfiles:/root/entryfiles:ro
+      - ./entryfiles/_etc/profile.d/misc.sh:/etc/profile.d/misc.sh:ro
+      - /opt/jdk:/opt/jdk:ro
+
+  node1:
+    <<: *default
+
+  node2:
+    <<: *default
