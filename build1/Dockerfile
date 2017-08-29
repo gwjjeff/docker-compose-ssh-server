@@ -12,7 +12,7 @@ RUN yum -y install yum-utils
 RUN yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
 RUN yum -y install python-setuptools
 RUN easy_install supervisor
-RUN mkdir -p /etc/supervisor
+RUN mkdir -p /etc/supervisor/supervisord.user.d
 COPY ./src/supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN yum -y install sudo

@@ -21,4 +21,13 @@ if [ -f /root/entryfiles/scripts/user/bootstrap.sh ]; then
     su - $POWER_USER -c "sh $POWER_USER_HOME/scripts/bootstrap.sh"
 fi
 
+if [ -f $POWER_USER_HOME/scripts/${POWER_USER}_run.sup.conf ]; then
+    cp $POWER_USER_HOME/scripts/${POWER_USER}_run.sup.conf /etc/supervisor/supervisord.user.d
+fi
+
+if [ -d /data ]; then
+    mkdir -p /data/$POWER_USER
+    chown $POWER_USER:$POWER_USER /data/$POWER_USER
+fi
+
 exec "$@"
