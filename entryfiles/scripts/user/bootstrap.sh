@@ -16,5 +16,6 @@
 #!/usr/bin/env bash
 . /etc/profile.d/misc.sh
 cp -r $HADOOP_PREFIX/etc/hadoop $HOME/conf
+cp $HOME/scripts/$USER/* $HOME/conf
 
 mkdir -p $HOME/log $HOME/pid

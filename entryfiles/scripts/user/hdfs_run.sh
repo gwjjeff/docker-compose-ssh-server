@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-if [ "$USER" == "pseudo" ]; then
+if [ "$USER" == "hdfs" ]; then
     # $HADOOP_PREFIX/bin/hdfs namenode -format
     
-    $HADOOP_PREFIX/sbin/start-dfs.sh
-    $HADOOP_PREFIX/sbin/start-yarn.sh
+    # $HADOOP_PREFIX/sbin/start-dfs.sh
+    # $HADOOP_PREFIX/sbin/start-yarn.sh
 
     # $HADOOP_PREFIX/bin/hdfs dfs -mkdir /user
     # $HADOOP_PREFIX/bin/hdfs dfs -mkdir /user/$USER
