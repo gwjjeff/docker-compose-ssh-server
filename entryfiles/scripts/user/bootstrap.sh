@@ -15,7 +15,11 @@
 
 #!/usr/bin/env bash
 . /etc/profile.d/misc.sh
+. /etc/profile.d/docker_inspects.sh
 cp -r $HADOOP_PREFIX/etc/hadoop $HOME/conf
-cp $HOME/scripts/$USER/* $HOME/conf
 
-mkdir -p $HOME/log $HOME/pid
+if [ -d $HOME/scripts/$USER/conf ]; then
+    find $HOME/scripts/$USER/conf -type f -exec sed -i -e "s~{{CONTAINER_BOX}}~$CONTAINER_BOX~g" {} \;
+    cp -r $HOME/scripts/$USER/conf $HOME/
+    mkdir -p $HOME/log $HOME/pid
+fi

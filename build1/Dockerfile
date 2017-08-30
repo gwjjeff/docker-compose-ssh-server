@@ -16,6 +16,12 @@ RUN mkdir -p /etc/supervisor/supervisord.user.d
 COPY ./src/supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN yum -y install sudo
+RUN yum -y install jq
+
+# update curl
+RUN rpm -Uvh http://nervion.us.es/city-fan/yum-repo/rhel6/x86_64/city-fan.org-release-1-13.rhel6.noarch.rpm \
+    && yum -y install libcurl 
+
 RUN sed -i \
 	-e 's~^# %wheel\tALL=(ALL)\tALL~%wheel\tALL=(ALL) ALL~g' \
 	-e 's~\(.*\) requiretty$~#\1requiretty~' \

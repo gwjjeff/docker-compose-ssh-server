@@ -1,34 +1,25 @@
 version: '3.1'
 
 services:
-  devmachine: &default
+  devbase: &default
     build: ./build1
     image: gwjjeff/devbase
+    domainname: polar.local
     environment:
       POWER_USER: jeff
       JAVA_HOME: /opt/jdk
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ./entryfiles:/root/entryfiles:ro
       - ./entryfiles/_etc/supervisor/supervisord.d:/etc/supervisor/supervisord.d:ro
       - ./entryfiles/_etc/profile.d/misc.sh:/etc/profile.d/misc.sh:ro
       - /opt/jdk:/opt/jdk:ro
       - /home/jeff/bench/java/hadoop/hadoop-2.7.4:/opt/hadoop-2.7.4:ro
       - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nw1
+      - nw2
 
-  pseudo:
-    <<: *default
-    environment:
-      POWER_USER: pseudo
-    ports:
-      - "20122:22"
-
-  master:
-    <<: *default
-    environment:
-      POWER_USER: hdfs
-  
-  slave:
-    <<: *default
-    environment:
-      POWER_USER: hdfs
+networks:
+  nw1:
+  nw2:
