@@ -11,7 +11,7 @@ echo '###AUTOGENBEGIN' >> entryfiles/_etc/dnsmasq.conf
 sh gen-dnsmasq.sh >> entryfiles/_etc/dnsmasq.conf
 echo '###AUTOGENEND' >> entryfiles/_etc/dnsmasq.conf
 sed -i -e '/^address=/d' entryfiles/_etc/dnsmasq.conf
-sh gen-hosts.sh >> entryfiles/_etc/dnsmasq.hosts
+sh gen-hosts.sh > entryfiles/_etc/dnsmasq.hosts
 
 DNSMASQ=`grep dnsmasq /etc/hosts | awk '{print $1}'`
 sudo su <<EOF
