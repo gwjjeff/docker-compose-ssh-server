@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl -s --unix-socket /var/run/docker.sock "http:/v1.24/containers/json" | jq -r '.[] | {id: .Id[0:12], name: .Names[0][1:], network: .NetworkSettings | .Networks | to_entries[] | { key: .key, value: .value.IPAddress } } | { id: .id, ip: .network.value, host: (.name + "." + .network.key)} | "address=/" + .host + "/" + .ip + "\n" + "address=/" + .id + "/" + .ip + "\n" + "ptr-record=" + (.ip | split(".") | reverse | join(".") + ".in-addr.arpa") + "," + .host | gsub("_"; "-")'

@@ -19,7 +19,7 @@
 cp -r $HADOOP_PREFIX/etc/hadoop $HOME/conf
 
 if [ -d $HOME/scripts/$USER/conf ]; then
-    find $HOME/scripts/$USER/conf -type f -exec sed -i -e "s~{{CONTAINER_BOX}}~$CONTAINER_BOX~g" {} \;
+    find $HOME/scripts/$USER/conf -type f -exec sed -i -e "s~{{CONTAINER_BOX}}~$CONTAINER_BOX~g; s~{{NM_HOSTNAME}}~$CONTAINER_HOSTNAME~g" {} \;
     cp -r $HOME/scripts/$USER/conf $HOME/
     mkdir -p $HOME/log $HOME/pid
 fi

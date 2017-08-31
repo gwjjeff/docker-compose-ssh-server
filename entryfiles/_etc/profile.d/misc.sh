@@ -14,3 +14,6 @@ export HADOOP_MAPRED_PID_DIR=$HOME/pid
 export YARN_CONF_DIR=$HOME/conf
 export YARN_LOG_DIR=$HOME/log
 export YARN_PID_DIR=$HOME/pid
+
+export HADOOP_HEAPSIZE=400
+export YARN_HEAPSIZE=400

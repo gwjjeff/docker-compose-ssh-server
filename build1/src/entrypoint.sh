@@ -14,8 +14,10 @@ chmod 600 $POWER_USER_HOME/.ssh/id_rsa $POWER_USER_HOME/.ssh/authorized_keys
 echo power user has been created: $POWER_USER
 
 CONTAINER_NAME=`curl -s --unix-socket /var/run/docker.sock "http:/v1.24/containers/${HOSTNAME%%.*}/json" | jq -r '.Name' | sed 's~/~~'`
+CONTAINER_HOSTNAME=`curl -s --unix-socket /var/run/docker.sock "http:/v1.24/containers/${HOSTNAME%%.*}/json" | jq -r '.Name + "." + .HostConfig.NetworkMode' | sed 's~/~~; s~_~-~g'`
 echo "export CONTAINER_NAME=$CONTAINER_NAME" >> /etc/profile.d/docker_inspects.sh
 echo "export CONTAINER_BOX=/data/$CONTAINER_NAME" >> /etc/profile.d/docker_inspects.sh
+echo "export CONTAINER_HOSTNAME=$CONTAINER_HOSTNAME" >> /etc/profile.d/docker_inspects.sh
 
 if [ -f /root/entryfiles/scripts/user/bootstrap.sh ]; then
     echo copy entry files....

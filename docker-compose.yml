@@ -14,6 +14,7 @@ services:
       - ./entryfiles/_etc/profile.d/misc.sh:/etc/profile.d/misc.sh:ro
       - /opt/jdk:/opt/jdk:ro
       - /home/jeff/bench/java/hadoop/hadoop-2.7.4:/opt/hadoop-2.7.4:ro
+      - ./entryfiles/_etc/resolv.conf:/etc/resolv.conf
       - ./data:/data
 
   pseudo:
@@ -32,3 +33,12 @@ services:
     <<: *default
     environment:
       POWER_USER: hdfs
+
+  dnsmasq:
+    image: jpillora/dnsmasq
+    environment:
+      USER: jeff
+      PASS: test
+    volumes:
+      - ./entryfiles/_etc/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./entryfiles/_etc/dnsmasq.hosts:/etc/dnsmasq.hosts
